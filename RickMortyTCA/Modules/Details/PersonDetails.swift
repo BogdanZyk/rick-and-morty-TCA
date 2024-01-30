@@ -13,6 +13,11 @@ struct PersonDetails: View {
     var body: some View {
         WithViewStore(store, observe: {$0}) { viewStore in
             Text(viewStore.id.formatted())
+               
+        }
+        .task {
+            store.send(.fetchPersonDetails)
+            store.send(.fetchEpisodes)
         }
     }
 }

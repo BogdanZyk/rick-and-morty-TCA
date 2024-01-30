@@ -15,8 +15,8 @@ struct DetailsStore {
     }
     
     enum Action {
-        case fetchPersonDetails(Int)
-        case fetchEpisodes(Int)
+        case fetchPersonDetails
+        case fetchEpisodes
     }
     
     @Dependency(\.dismiss) var dismiss
@@ -25,9 +25,11 @@ struct DetailsStore {
         Reduce { state, action in
             switch action {
                 
-            case let .fetchPersonDetails(id):
+            case .fetchPersonDetails:
+                print("fetchPersonDetails")
                 return .none
-            case let .fetchEpisodes(id):
+            case .fetchEpisodes:
+                print("fetchEpisodes")
                 return .none
             }
         }

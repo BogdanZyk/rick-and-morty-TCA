@@ -9,15 +9,20 @@ import SwiftUI
 import ComposableArchitecture
 
 struct HomeView: View {
+    var rootStore: StoreOf<RootStore>?
     @State private var store = Store(initialState: HomeStore.State()) {
         HomeStore()
     }
     var body: some View {
         VStack {
-            NavigationLink(
-              "Details",
-              state: RootStore.Path.State.details(.init(id: 123))
-            )
+            Button(action: {
+                rootStore?.send(.navigate(.details(.init(id: 123))))
+            }, label: {
+                Text("Details")
+            })
+        }
+        .task {
+            store.send(.onAppear)
         }
     }
 }

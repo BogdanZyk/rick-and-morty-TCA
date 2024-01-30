@@ -1,0 +1,49 @@
+{
+  "schemaName": "GraphqAPI",
+  "input": {
+    "operationSearchPaths": [
+      "/*.graphql"
+    ],
+    "schemaSearchPaths": [
+      "/*.graphqls"
+    ]
+  },
+  "output": {
+    "schemaTypes": {
+      "moduleType": {
+        "swiftPackageManager": {}
+      },
+      "path": "./GraphqlService/"
+    },
+    "operations": {
+      "inSchemaModule": {}
+    },
+    "testMocks": {
+      "swiftPackage": {
+        "targetName": "ApolloMocks"
+      }
+    }
+  },
+  "options": {
+    "selectionSetInitializers": {
+      "localCacheMutations": true,
+      "namedFragments": true,
+      "operations": true
+    }
+  },
+  "schemaDownloadConfiguration": {
+    "downloadMethod": {
+      "introspection": {
+        "endpointURL": "https://rickandmortyapi.com/graphql",
+        "httpMethod": {
+          "POST": {}
+        },
+        "includeDeprecatedInputValues": false,
+        "outputFormat": "SDL"
+      }
+    },
+    "downloadTimeout": 60,
+    "headers": [],
+    "outputPath": "./GraphqlService/schema.graphqls"
+  }
+}

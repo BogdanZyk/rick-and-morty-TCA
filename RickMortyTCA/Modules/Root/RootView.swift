@@ -20,14 +20,7 @@ struct RootView: View {
                 }
             }
         } destination: {
-            switch $0 {
-            case .details:
-                CaseLet(
-                    \RootStore.Path.State.details,
-                     action: RootStore.Path.Action.details,
-                     then: PersonDetails.init(store:)
-                )
-            }
+            makeDestination($0)
         }
     }
 }
@@ -40,7 +33,7 @@ extension RootView {
     
     @ViewBuilder
     private func makeRootView() -> some View {
-        HomeView()
+        HomeView(rootStore: store)
             .tag(RootStore.Tab.home)
             .tabItem { Text("Home") }
         SearchView()
@@ -51,4 +44,15 @@ extension RootView {
             .tabItem { Text("Profile") }
     }
     
+    
+    private func makeDestination(_ type: RootStore.Path.State) -> some View {
+        switch type {
+        case .details:
+            CaseLet(
+                \RootStore.Path.State.details,
+                 action: RootStore.Path.Action.details) {
+                     PersonDetails.init(store:$0)
+                 }
+        }
+    }
 }

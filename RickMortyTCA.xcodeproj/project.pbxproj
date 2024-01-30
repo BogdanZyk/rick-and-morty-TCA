@@ -23,6 +23,7 @@
 		5A2D114A2B68EDDC00FE13A4 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D11492B68EDDC00FE13A4 /* SearchView.swift */; };
 		5A2D114D2B68EE8800FE13A4 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D114C2B68EE8800FE13A4 /* ProfileStore.swift */; };
 		5A2D114F2B68F27A00FE13A4 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D114E2B68F27A00FE13A4 /* ProfileView.swift */; };
+		5A2D11532B690A3100FE13A4 /* schema.graphqls in Resources */ = {isa = PBXBuildFile; fileRef = 5A2D11522B690A3100FE13A4 /* schema.graphqls */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,8 @@
 		5A2D11492B68EDDC00FE13A4 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		5A2D114C2B68EE8800FE13A4 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
 		5A2D114E2B68F27A00FE13A4 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		5A2D11502B69093900FE13A4 /* apollo-codegen-config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "apollo-codegen-config.json"; sourceTree = "<group>"; };
+		5A2D11522B690A3100FE13A4 /* schema.graphqls */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = schema.graphqls; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +78,7 @@
 		5A2D111D2B68E55C00FE13A4 /* RickMortyTCA */ = {
 			isa = PBXGroup;
 			children = (
+				5A2D11512B690A3100FE13A4 /* GraphqlService */,
 				5A2D112F2B68E5BD00FE13A4 /* App */,
 				5A2D112E2B68E5B400FE13A4 /* Utils */,
 				5A2D112D2B68E5AF00FE13A4 /* Modules */,
@@ -182,6 +186,15 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		5A2D11512B690A3100FE13A4 /* GraphqlService */ = {
+			isa = PBXGroup;
+			children = (
+				5A2D11502B69093900FE13A4 /* apollo-codegen-config.json */,
+				5A2D11522B690A3100FE13A4 /* schema.graphqls */,
+			);
+			path = GraphqlService;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -247,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A2D11262B68E55E00FE13A4 /* Preview Assets.xcassets in Resources */,
+				5A2D11532B690A3100FE13A4 /* schema.graphqls in Resources */,
 				5A2D11232B68E55E00FE13A4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

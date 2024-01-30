@@ -11,20 +11,25 @@ import ComposableArchitecture
 struct HomeStore {
     
     struct State: Equatable{
-        var pesons = [String]()
+        var persons = [String]()
     }
     
     enum Action {
-      case fetchPersons
-        case details(Int)
+        case fetchPersons
+        case onAppear
     }
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
+            case .onAppear:
+                if !state.persons.isEmpty { return .none }
+                return .run { send in
+                    await send(.fetchPersons)
+                }
             case .fetchPersons:
-                return .none
-            case .details:
+                print("fetchPersons")
+                state.persons.append("1")
                 return .none
             }
         }
