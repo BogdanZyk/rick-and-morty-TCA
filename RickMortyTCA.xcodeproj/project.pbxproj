@@ -11,6 +11,18 @@
 		5A2D11212B68E55C00FE13A4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D11202B68E55C00FE13A4 /* ContentView.swift */; };
 		5A2D11232B68E55E00FE13A4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A2D11222B68E55E00FE13A4 /* Assets.xcassets */; };
 		5A2D11262B68E55E00FE13A4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A2D11252B68E55E00FE13A4 /* Preview Assets.xcassets */; };
+		5A2D11322B68E5F500FE13A4 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D11312B68E5F500FE13A4 /* View.swift */; };
+		5A2D11352B68E69500FE13A4 /* RootStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D11342B68E69500FE13A4 /* RootStore.swift */; };
+		5A2D11382B68E6D400FE13A4 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 5A2D11372B68E6D400FE13A4 /* ComposableArchitecture */; };
+		5A2D113C2B68E88900FE13A4 /* DetailsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D113B2B68E88900FE13A4 /* DetailsStore.swift */; };
+		5A2D113F2B68E8F700FE13A4 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D113E2B68E8F700FE13A4 /* HomeView.swift */; };
+		5A2D11412B68E90700FE13A4 /* PersonDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D11402B68E90700FE13A4 /* PersonDetails.swift */; };
+		5A2D11432B68E93000FE13A4 /* HomeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D11422B68E93000FE13A4 /* HomeStore.swift */; };
+		5A2D11452B68EC9F00FE13A4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D11442B68EC9F00FE13A4 /* RootView.swift */; };
+		5A2D11482B68ECC800FE13A4 /* SearchStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D11472B68ECC800FE13A4 /* SearchStore.swift */; };
+		5A2D114A2B68EDDC00FE13A4 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D11492B68EDDC00FE13A4 /* SearchView.swift */; };
+		5A2D114D2B68EE8800FE13A4 /* ProfileStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D114C2B68EE8800FE13A4 /* ProfileStore.swift */; };
+		5A2D114F2B68F27A00FE13A4 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D114E2B68F27A00FE13A4 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +31,17 @@
 		5A2D11202B68E55C00FE13A4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5A2D11222B68E55E00FE13A4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5A2D11252B68E55E00FE13A4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5A2D11312B68E5F500FE13A4 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		5A2D11342B68E69500FE13A4 /* RootStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootStore.swift; sourceTree = "<group>"; };
+		5A2D113B2B68E88900FE13A4 /* DetailsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsStore.swift; sourceTree = "<group>"; };
+		5A2D113E2B68E8F700FE13A4 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		5A2D11402B68E90700FE13A4 /* PersonDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonDetails.swift; sourceTree = "<group>"; };
+		5A2D11422B68E93000FE13A4 /* HomeStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStore.swift; sourceTree = "<group>"; };
+		5A2D11442B68EC9F00FE13A4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		5A2D11472B68ECC800FE13A4 /* SearchStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStore.swift; sourceTree = "<group>"; };
+		5A2D11492B68EDDC00FE13A4 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		5A2D114C2B68EE8800FE13A4 /* ProfileStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileStore.swift; sourceTree = "<group>"; };
+		5A2D114E2B68F27A00FE13A4 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5A2D11382B68E6D400FE13A4 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,8 +75,10 @@
 		5A2D111D2B68E55C00FE13A4 /* RickMortyTCA */ = {
 			isa = PBXGroup;
 			children = (
-				5A2D111E2B68E55C00FE13A4 /* RickMortyTCAApp.swift */,
-				5A2D11202B68E55C00FE13A4 /* ContentView.swift */,
+				5A2D112F2B68E5BD00FE13A4 /* App */,
+				5A2D112E2B68E5B400FE13A4 /* Utils */,
+				5A2D112D2B68E5AF00FE13A4 /* Modules */,
+				5A2D112C2B68E56400FE13A4 /* Services */,
 				5A2D11222B68E55E00FE13A4 /* Assets.xcassets */,
 				5A2D11242B68E55E00FE13A4 /* Preview Content */,
 			);
@@ -65,6 +91,95 @@
 				5A2D11252B68E55E00FE13A4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5A2D112C2B68E56400FE13A4 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		5A2D112D2B68E5AF00FE13A4 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				5A2D114B2B68EE7B00FE13A4 /* Profile */,
+				5A2D11462B68ECB400FE13A4 /* Search */,
+				5A2D113A2B68E87F00FE13A4 /* Details */,
+				5A2D11392B68E87500FE13A4 /* Home */,
+				5A2D11332B68E63D00FE13A4 /* Root */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		5A2D112E2B68E5B400FE13A4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5A2D11302B68E5E300FE13A4 /* Extensions */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		5A2D112F2B68E5BD00FE13A4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				5A2D11202B68E55C00FE13A4 /* ContentView.swift */,
+				5A2D111E2B68E55C00FE13A4 /* RickMortyTCAApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		5A2D11302B68E5E300FE13A4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5A2D11312B68E5F500FE13A4 /* View.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5A2D11332B68E63D00FE13A4 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				5A2D11342B68E69500FE13A4 /* RootStore.swift */,
+				5A2D11442B68EC9F00FE13A4 /* RootView.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		5A2D11392B68E87500FE13A4 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5A2D113E2B68E8F700FE13A4 /* HomeView.swift */,
+				5A2D11422B68E93000FE13A4 /* HomeStore.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		5A2D113A2B68E87F00FE13A4 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				5A2D113B2B68E88900FE13A4 /* DetailsStore.swift */,
+				5A2D11402B68E90700FE13A4 /* PersonDetails.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
+		5A2D11462B68ECB400FE13A4 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				5A2D11472B68ECC800FE13A4 /* SearchStore.swift */,
+				5A2D11492B68EDDC00FE13A4 /* SearchView.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		5A2D114B2B68EE7B00FE13A4 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5A2D114C2B68EE8800FE13A4 /* ProfileStore.swift */,
+				5A2D114E2B68F27A00FE13A4 /* ProfileView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +198,9 @@
 			dependencies = (
 			);
 			name = RickMortyTCA;
+			packageProductDependencies = (
+				5A2D11372B68E6D400FE13A4 /* ComposableArchitecture */,
+			);
 			productName = RickMortyTCA;
 			productReference = 5A2D111B2B68E55C00FE13A4 /* RickMortyTCA.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +229,9 @@
 				Base,
 			);
 			mainGroup = 5A2D11122B68E55C00FE13A4;
+			packageReferences = (
+				5A2D11362B68E6D400FE13A4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+			);
 			productRefGroup = 5A2D111C2B68E55C00FE13A4 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,7 +259,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A2D11212B68E55C00FE13A4 /* ContentView.swift in Sources */,
+				5A2D114F2B68F27A00FE13A4 /* ProfileView.swift in Sources */,
+				5A2D11412B68E90700FE13A4 /* PersonDetails.swift in Sources */,
 				5A2D111F2B68E55C00FE13A4 /* RickMortyTCAApp.swift in Sources */,
+				5A2D113C2B68E88900FE13A4 /* DetailsStore.swift in Sources */,
+				5A2D11432B68E93000FE13A4 /* HomeStore.swift in Sources */,
+				5A2D11452B68EC9F00FE13A4 /* RootView.swift in Sources */,
+				5A2D113F2B68E8F700FE13A4 /* HomeView.swift in Sources */,
+				5A2D11322B68E5F500FE13A4 /* View.swift in Sources */,
+				5A2D11352B68E69500FE13A4 /* RootStore.swift in Sources */,
+				5A2D11482B68ECC800FE13A4 /* SearchStore.swift in Sources */,
+				5A2D114A2B68EDDC00FE13A4 /* SearchView.swift in Sources */,
+				5A2D114D2B68EE8800FE13A4 /* ProfileStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +476,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5A2D11362B68E6D400FE13A4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.7.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5A2D11372B68E6D400FE13A4 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5A2D11362B68E6D400FE13A4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 5A2D11132B68E55C00FE13A4 /* Project object */;
 }
