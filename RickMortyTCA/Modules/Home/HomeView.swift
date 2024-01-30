@@ -14,15 +14,30 @@ struct HomeView: View {
         HomeStore()
     }
     var body: some View {
-        VStack {
-            Button(action: {
-                rootStore?.send(.navigate(.details(.init(id: 123))))
-            }, label: {
-                Text("Details")
-            })
+        WithViewStore(store, observe: {$0}) { viewStore in
+            ScrollView(.vertical, showsIndicators: false) {
+                LazyVStack(alignment: .leading, spacing: 10){
+                    ForEach(viewStore.characters) { character in
+                        VStack(alignment: .leading) {
+                            Text(character.name ?? "")
+                            Text(character.type ?? "")
+                        }
+                        .hLeading()
+                        .padding()
+                        .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 10))
+                        .onAppear {
+                            viewStore.send(.fetchNextPage(character.id), animation: .default)
+                        }
+                    }
+                }
+                .padding()
+            }
         }
         .task {
             store.send(.onAppear)
+        }
+        .refreshable {
+            store.send(.refetch)
         }
     }
 }
