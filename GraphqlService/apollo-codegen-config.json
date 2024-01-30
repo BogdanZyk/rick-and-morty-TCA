@@ -1,11 +1,11 @@
 {
-  "schemaName": "GraphqAPI",
+  "schemaName": "GraphqlAPI",
   "input": {
     "operationSearchPaths": [
-      "/*.graphql"
+      "**/*.graphql"
     ],
     "schemaSearchPaths": [
-      "/*.graphqls"
+      "**/*.graphqls"
     ]
   },
   "output": {
@@ -13,7 +13,7 @@
       "moduleType": {
         "swiftPackageManager": {}
       },
-      "path": "./GraphqlService/"
+      "path": "./GraphqlAPI/"
     },
     "operations": {
       "inSchemaModule": {}

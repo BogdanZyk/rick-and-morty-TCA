@@ -1,0 +1,36 @@
+
+query PaginatedCharacters($page: Int, $filter: FilterCharacter) {
+  characters(page: $page, filter: $filter) {
+    info {
+      next
+    }
+    results {
+      ...PaginatedCharacter
+    }
+  }
+}
+
+fragment PaginatedCharacter on Character {
+  id
+  name
+  type
+  gender
+  image
+}
+
+
+query Character($characterId: ID!) {
+  character(id: $characterId) {
+    ...CharacterAttrs
+  }
+}
+
+fragment CharacterAttrs on Character {
+  name
+  type
+  gender
+  image
+  id
+  status
+  species
+}
