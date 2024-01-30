@@ -7,7 +7,7 @@ public class PaginatedCharactersQuery: GraphQLQuery {
   public static let operationName: String = "PaginatedCharacters"
   public static let operationDocument: ApolloAPI.OperationDocument = .init(
     definition: .init(
-      #"query PaginatedCharacters($page: Int, $filter: FilterCharacter) { characters(page: $page, filter: $filter) { __typename info { __typename next } results { __typename ...PaginatedCharacter } } }"#,
+      #"query PaginatedCharacters($page: Int, $filter: FilterCharacter) { characters(page: $page, filter: $filter) { __typename info { __typename next pages } results { __typename ...PaginatedCharacter } } }"#,
       fragments: [PaginatedCharacter.self]
     ))
 
@@ -100,18 +100,23 @@ public class PaginatedCharactersQuery: GraphQLQuery {
         public static var __selections: [ApolloAPI.Selection] { [
           .field("__typename", String.self),
           .field("next", Int?.self),
+          .field("pages", Int?.self),
         ] }
 
         /// Number of the next page (if it exists)
         public var next: Int? { __data["next"] }
+        /// The amount of pages.
+        public var pages: Int? { __data["pages"] }
 
         public init(
-          next: Int? = nil
+          next: Int? = nil,
+          pages: Int? = nil
         ) {
           self.init(_dataDict: DataDict(
             data: [
               "__typename": GraphqlAPI.Objects.Info.typename,
               "next": next,
+              "pages": pages,
             ],
             fulfilledFragments: [
               ObjectIdentifier(PaginatedCharactersQuery.Data.Characters.Info.self)

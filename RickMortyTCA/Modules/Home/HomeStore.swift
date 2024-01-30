@@ -15,7 +15,8 @@ struct HomeStore {
     
     struct State: Equatable{
         var characters = [PaginatedCharacter]()
-        var next: Int = 1
+        var total: Int = 1
+        var next: Int = 0
     }
     
     enum Action {
@@ -34,24 +35,28 @@ struct HomeStore {
                 return .run { send in
                     await send(.fetch)
                 }
+                
             case .fetch:
                 return .run { [page = state.next] send in
                     let result = try await client.paginatedCharacters(page: page)
-                    await send(.handleResult(result))
+                    await send(.handleResult(result), animation: .default)
                 }
+                
             case let .handleResult(result):
                 guard let result else { return .none}
                 state.characters.append(contentsOf: result.data)
                 state.next = result.next
+                state.total = result.total
                 return .none
+                
             case let .fetchNextPage(id):
-                guard let id, id != state.characters.last?.id else { return .none }
+                if id != state.characters.last?.id, state.next < state.total { return .none }
                 return .run { send in
                     await send(.fetch)
                 }
             case .refetch:
                 state.characters = []
-                state.next = 1
+                state.next = 0
                 return .run { send in
                     await send(.fetch)
                 }

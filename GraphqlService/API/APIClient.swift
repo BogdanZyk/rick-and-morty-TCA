@@ -16,9 +16,10 @@ struct APIClient {
 }
 
 extension APIClient: TestDependencyKey {
+    
 //  static let previewValue = Self(
 //    paginatedCharacters: {_ in
-//        return (1, [])
+//        return (2, [.init(id: "1"), .init(id: "2")])
 //    }
 //  )
 

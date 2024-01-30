@@ -13,6 +13,7 @@ struct HomeView: View {
     @State private var store = Store(initialState: HomeStore.State()) {
         HomeStore()
     }
+    @State private var isLoad: Bool = true
     var body: some View {
         WithViewStore(store, observe: {$0}) { viewStore in
             ScrollView(.vertical, showsIndicators: false) {
@@ -32,9 +33,15 @@ struct HomeView: View {
                 }
                 .padding()
             }
+            .overlay {
+                if isLoad {
+                    ProgressView()
+                }
+            }
         }
         .task {
-            store.send(.onAppear)
+            await store.send(.onAppear).finish()
+            isLoad = false
         }
         .refreshable {
             store.send(.refetch)

@@ -14,9 +14,6 @@ protocol APIProvider {
     
 }
 
-
-typealias PaginatedResult = (next: Int, data: [PaginatedCharacter])
-
 struct APIService: APIProvider {
     
     private static let client = Network.shared.client
@@ -27,13 +24,26 @@ struct APIService: APIProvider {
         
         guard let result = try await client.fetch(query: query),
               let next = result.data?.characters?.info?.next,
+              let total = result.data?.characters?.info?.pages,
               let data = result.data?.characters?.results?.compactMap({$0?.fragments.paginatedCharacter}) else {
             return nil
         }
         
-        return (next, data)
+        return .init(next: next, total: total, data: data)
     }
     
+}
+
+
+struct PaginatedResult: Equatable {
+    
+    var next: Int = 1
+    var total: Int = 1
+    var data: [PaginatedCharacter] = []
+    
+    var isNextPage: Bool {
+        total > next
+    }
 }
 
 

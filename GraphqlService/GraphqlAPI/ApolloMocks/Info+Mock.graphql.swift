@@ -11,14 +11,17 @@ public class Info: MockObject {
 
   public struct MockFields {
     @Field<Int>("next") public var next
+    @Field<Int>("pages") public var pages
   }
 }
 
 public extension Mock where O == Info {
   convenience init(
-    next: Int? = nil
+    next: Int? = nil,
+    pages: Int? = nil
   ) {
     self.init()
     _setScalar(next, for: \.next)
+    _setScalar(pages, for: \.pages)
   }
 }

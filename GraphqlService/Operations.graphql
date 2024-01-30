@@ -3,6 +3,7 @@ query PaginatedCharacters($page: Int, $filter: FilterCharacter) {
   characters(page: $page, filter: $filter) {
     info {
       next
+      pages
     }
     results {
       ...PaginatedCharacter
