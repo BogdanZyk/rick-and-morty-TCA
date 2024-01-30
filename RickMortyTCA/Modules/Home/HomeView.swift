@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GraphqlAPI
 import ComposableArchitecture
 
 struct HomeView: View {
@@ -19,13 +20,7 @@ struct HomeView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVStack(alignment: .leading, spacing: 10){
                     ForEach(viewStore.characters) { character in
-                        VStack(alignment: .leading) {
-                            Text(character.name ?? "")
-                            Text(character.type ?? "")
-                        }
-                        .hLeading()
-                        .padding()
-                        .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 10))
+                        row(character)
                         .onAppear {
                             viewStore.send(.fetchNextPage(character.id), animation: .default)
                         }
@@ -51,4 +46,22 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
+}
+
+
+extension HomeView {
+    
+    private func row(_ character: PaginatedCharacter) -> some View {
+        VStack(alignment: .leading) {
+            Text(character.name ?? "")
+            Text(character.type ?? "")
+        }
+        .hLeading()
+        .padding()
+        .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 10))
+        .onTapGesture {
+            rootStore?.send(.navigate(.details(.init(id: character.id ?? "" ))))
+        }
+    }
+    
 }

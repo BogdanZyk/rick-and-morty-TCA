@@ -6,27 +6,36 @@
 //
 
 import ComposableArchitecture
+import GraphqlAPI
 
 @Reducer
 struct DetailsStore {
-    struct State: Codable, Equatable, Hashable {
-        let id: Int
-        var isLoading = false
+    
+    struct State: Equatable, Hashable {
+        let id: String
+        var personDetails: CharacterAttrs?
     }
     
     enum Action {
         case fetchPersonDetails
         case fetchEpisodes
+        case handlePersonResult(CharacterAttrs?)
     }
     
     @Dependency(\.dismiss) var dismiss
+    @Dependency(\.apiClient) var apiClient
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
                 
             case .fetchPersonDetails:
-                print("fetchPersonDetails")
+                return .run { [id = state.id] send in
+                    let result = try await apiClient.character(id: id)
+                    await send(.handlePersonResult(result))
+                }
+            case let .handlePersonResult(result):
+                state.personDetails = result
                 return .none
             case .fetchEpisodes:
                 print("fetchEpisodes")

@@ -12,6 +12,7 @@ protocol APIProvider {
     
     static func paginatedCharacters(page: Int) async throws -> PaginatedResult?
     
+    static func character(id: String) async throws -> CharacterAttrs?
 }
 
 struct APIService: APIProvider {
@@ -32,6 +33,10 @@ struct APIService: APIProvider {
         return .init(next: next, total: total, data: data)
     }
     
+    static func character(id: String) async throws -> CharacterAttrs? {
+        let query = CharacterQuery(characterId: id)
+        return try await client.fetch(query: query)?.data?.character?.fragments.characterAttrs
+    }
 }
 
 

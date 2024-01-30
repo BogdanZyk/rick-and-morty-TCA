@@ -12,8 +12,15 @@ struct PersonDetails: View {
     let store: StoreOf<DetailsStore>
     var body: some View {
         WithViewStore(store, observe: {$0}) { viewStore in
-            Text(viewStore.id.formatted())
-               
+            if let details = viewStore.personDetails {
+                VStack {
+                    Text(details.name ?? "")
+                    Text(details.type ?? "")
+                    Text(details.gender ?? "")
+                }
+            } else {
+                ProgressView()
+            }
         }
         .task {
             store.send(.fetchPersonDetails)
@@ -23,7 +30,7 @@ struct PersonDetails: View {
 }
 
 #Preview {
-    PersonDetails(store: .init(initialState: DetailsStore.State(id: 1), reducer: {
+    PersonDetails(store: .init(initialState: DetailsStore.State(id: "1"), reducer: {
         DetailsStore()
     }))
 }

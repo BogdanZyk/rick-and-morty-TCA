@@ -59,7 +59,7 @@ extension RootStore {
     
     @Reducer
     struct Path {
-        enum State: Codable, Equatable, Hashable {
+        enum State: Equatable, Hashable {
             case details(DetailsStore.State)
         }
         
