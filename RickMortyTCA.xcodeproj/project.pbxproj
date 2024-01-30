@@ -31,6 +31,8 @@
 		5A2D116B2B6917F200FE13A4 /* Apollo+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D116A2B6917F200FE13A4 /* Apollo+Ext.swift */; };
 		5A2D116E2B691EED00FE13A4 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 5A2D116D2B691EED00FE13A4 /* Apollo */; };
 		5A2D11702B691EED00FE13A4 /* ApolloAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 5A2D116F2B691EED00FE13A4 /* ApolloAPI */; };
+		5A2D11742B6946BD00FE13A4 /* FavoritingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D11732B6946BD00FE13A4 /* FavoritingStore.swift */; };
+		5A2D11762B69478D00FE13A4 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D11752B69478D00FE13A4 /* FavoriteButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		5A2D11662B69150F00FE13A4 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		5A2D11682B69169500FE13A4 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		5A2D116A2B6917F200FE13A4 /* Apollo+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Apollo+Ext.swift"; sourceTree = "<group>"; };
+		5A2D11732B6946BD00FE13A4 /* FavoritingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritingStore.swift; sourceTree = "<group>"; };
+		5A2D11752B69478D00FE13A4 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 		5A2D112D2B68E5AF00FE13A4 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				5A2D11712B69469500FE13A4 /* Components */,
 				5A2D114B2B68EE7B00FE13A4 /* Profile */,
 				5A2D11462B68ECB400FE13A4 /* Search */,
 				5A2D113A2B68E87F00FE13A4 /* Details */,
@@ -233,6 +238,23 @@
 			path = API;
 			sourceTree = "<group>";
 		};
+		5A2D11712B69469500FE13A4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5A2D11722B6946A500FE13A4 /* FavoriteButton */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		5A2D11722B6946A500FE13A4 /* FavoriteButton */ = {
+			isa = PBXGroup;
+			children = (
+				5A2D11732B6946BD00FE13A4 /* FavoritingStore.swift */,
+				5A2D11752B69478D00FE13A4 /* FavoriteButton.swift */,
+			);
+			path = FavoriteButton;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -315,7 +337,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A2D116B2B6917F200FE13A4 /* Apollo+Ext.swift in Sources */,
+				5A2D11762B69478D00FE13A4 /* FavoriteButton.swift in Sources */,
 				5A2D11212B68E55C00FE13A4 /* ContentView.swift in Sources */,
+				5A2D11742B6946BD00FE13A4 /* FavoritingStore.swift in Sources */,
 				5A2D114F2B68F27A00FE13A4 /* ProfileView.swift in Sources */,
 				5A2D11412B68E90700FE13A4 /* PersonDetails.swift in Sources */,
 				5A2D111F2B68E55C00FE13A4 /* RickMortyTCAApp.swift in Sources */,
