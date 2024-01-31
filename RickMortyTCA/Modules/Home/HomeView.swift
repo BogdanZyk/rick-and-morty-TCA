@@ -65,9 +65,13 @@ extension HomeView {
         let onTap: (String) -> Void
         var body: some View {
             WithViewStore(store, observe: {$0}) { viewStore in
-                VStack(alignment: .leading) {
-                    Text(viewStore.character.name ?? "")
-                    Text(viewStore.character.type ?? "")
+                HStack {
+                    VStack(alignment: .leading) {
+                        Text(viewStore.character.name ?? "")
+                        Text(viewStore.character.type ?? "")
+                    }
+                    Spacer()
+                    FavoriteButton(store: self.store.scope(state: \.favorite, action: \.favorite))
                 }
                 .hLeading()
                 .padding()
