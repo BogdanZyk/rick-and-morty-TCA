@@ -18,14 +18,14 @@ struct APIClient {
 
 extension APIClient: TestDependencyKey {
     
-  static let previewValue = Self(
-    paginatedCharacters: {_ in
-        return .init(next: 1, total: 1, data: [.init(id: "1", name: "Test name", type: "Type")])
-    },
-    character: {_ in
-        return .init(name: "Test", type: "type", gender: "gender", image: nil, id: "1", status: "status", species: "species")
-    }
-  )
+//  static let previewValue = Self(
+//    paginatedCharacters: {_ in
+//        return .init(next: 1, total: 1, data: [.init(id: "1", name: "Test name", type: "Type")])
+//    },
+//    character: {_ in
+//        return .init(name: "Test", type: "type", gender: "gender", image: nil, id: "1", status: "status", species: "species")
+//    }
+//  )
 
   static let testValue = Self()
 }

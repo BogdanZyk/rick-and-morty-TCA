@@ -33,6 +33,7 @@
 		5A2D11702B691EED00FE13A4 /* ApolloAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 5A2D116F2B691EED00FE13A4 /* ApolloAPI */; };
 		5A2D11742B6946BD00FE13A4 /* FavoritingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D11732B6946BD00FE13A4 /* FavoritingStore.swift */; };
 		5A2D11762B69478D00FE13A4 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D11752B69478D00FE13A4 /* FavoriteButton.swift */; };
+		5A2D11782B694A0500FE13A4 /* CharactersStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2D11772B694A0500FE13A4 /* CharactersStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,7 @@
 		5A2D116A2B6917F200FE13A4 /* Apollo+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Apollo+Ext.swift"; sourceTree = "<group>"; };
 		5A2D11732B6946BD00FE13A4 /* FavoritingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritingStore.swift; sourceTree = "<group>"; };
 		5A2D11752B69478D00FE13A4 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteButton.swift; sourceTree = "<group>"; };
+		5A2D11772B694A0500FE13A4 /* CharactersStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,6 +178,7 @@
 			children = (
 				5A2D113E2B68E8F700FE13A4 /* HomeView.swift */,
 				5A2D11422B68E93000FE13A4 /* HomeStore.swift */,
+				5A2D11772B694A0500FE13A4 /* CharactersStore.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				5A2D11212B68E55C00FE13A4 /* ContentView.swift in Sources */,
 				5A2D11742B6946BD00FE13A4 /* FavoritingStore.swift in Sources */,
 				5A2D114F2B68F27A00FE13A4 /* ProfileView.swift in Sources */,
+				5A2D11782B694A0500FE13A4 /* CharactersStore.swift in Sources */,
 				5A2D11412B68E90700FE13A4 /* PersonDetails.swift in Sources */,
 				5A2D111F2B68E55C00FE13A4 /* RickMortyTCAApp.swift in Sources */,
 				5A2D113C2B68E88900FE13A4 /* DetailsStore.swift in Sources */,

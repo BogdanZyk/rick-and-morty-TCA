@@ -14,33 +14,9 @@ struct HomeView: View {
     @State private var store = Store(initialState: HomeStore.State()) {
         HomeStore()
     }
-    @State private var isLoad: Bool = true
+
     var body: some View {
-        WithViewStore(store, observe: {$0}) { viewStore in
-            ScrollView(.vertical, showsIndicators: false) {
-                LazyVStack(alignment: .leading, spacing: 10){
-                    ForEach(viewStore.characters) { character in
-                        row(character)
-                        .onAppear {
-                            viewStore.send(.fetchNextPage(character.id), animation: .default)
-                        }
-                    }
-                }
-                .padding()
-            }
-            .overlay {
-                if isLoad {
-                    ProgressView()
-                }
-            }
-        }
-        .task {
-            await store.send(.onAppear).finish()
-            isLoad = false
-        }
-        .refreshable {
-            store.send(.refetch)
-        }
+        CharacterList(rootStore: rootStore, store: store.scope(state: \.charactersStore, action: \.charactersStore))
     }
 }
 
@@ -51,17 +27,58 @@ struct HomeView: View {
 
 extension HomeView {
     
-    private func row(_ character: PaginatedCharacter) -> some View {
-        VStack(alignment: .leading) {
-            Text(character.name ?? "")
-            Text(character.type ?? "")
-        }
-        .hLeading()
-        .padding()
-        .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 10))
-        .onTapGesture {
-            rootStore?.send(.navigate(.details(.init(id: character.id ?? "" ))))
+    struct CharacterList: View {
+        @State private var isLoad: Bool = true
+        var rootStore: StoreOf<RootStore>?
+        let store: StoreOf<CharactersStore>
+        var body: some View {
+            WithViewStore(store, observe: {$0}) { viewStore in
+                ScrollView(.vertical, showsIndicators: false) {
+                    LazyVStack(alignment: .leading, spacing: 10){
+                        
+                        ForEachStore(self.store.scope(state: \.characters, action: \.characters)) { rowStore in
+                            CharacterRow(store: rowStore) {
+                                rootStore?.send(.navigate(.details(.init(id: $0))))
+                            }
+                        }
+                    }
+                    .padding()
+                }
+                .overlay {
+                    if isLoad {
+                        ProgressView()
+                    }
+                }
+            }
+            .task {
+                await store.send(.onAppear).finish()
+                isLoad = false
+            }
+            .refreshable {
+                store.send(.refetch)
+            }
         }
     }
     
+    struct CharacterRow: View {
+        let store: StoreOf<CharacterStore>
+        let onTap: (String) -> Void
+        var body: some View {
+            WithViewStore(store, observe: {$0}) { viewStore in
+                VStack(alignment: .leading) {
+                    Text(viewStore.character.name ?? "")
+                    Text(viewStore.character.type ?? "")
+                }
+                .hLeading()
+                .padding()
+                .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 10))
+                .onTapGesture {
+                    onTap(viewStore.id)
+                }
+                .onAppear {
+                    viewStore.send(.onAppear(viewStore.id))
+                }
+            }
+        }
+    }
 }
