@@ -16,20 +16,6 @@ struct APIClient {
 
 }
 
-extension APIClient: TestDependencyKey {
-    
-//  static let previewValue = Self(
-//    paginatedCharacters: {_ in
-//        return .init(next: 1, total: 1, data: [.init(id: "1", name: "Test name", type: "Type")])
-//    },
-//    character: {_ in
-//        return .init(name: "Test", type: "type", gender: "gender", image: nil, id: "1", status: "status", species: "species")
-//    }
-//  )
-
-  static let testValue = Self()
-}
-
 extension DependencyValues {
   var apiClient: APIClient {
     get { self[APIClient.self] }
@@ -46,4 +32,41 @@ extension APIClient: DependencyKey {
         return try await APIService.character(id: $0)
     }
   )
+}
+
+extension APIClient: TestDependencyKey {
+    
+//  static let previewValue = Self(
+//    paginatedCharacters: {_ in
+//        return .init(next: 1, total: 1, data: [PaginatedCharacter.mock])
+//    },
+//    character: {_ in
+//        return CharacterAttrs.mock
+//    }
+//  )
+
+  static let testValue = Self(
+    paginatedCharacters: { next in
+        if next >= 1 {
+            return .init(next: 2, total: 2, data: [PaginatedCharacter.mock2])
+        }
+        return .init(next: 1, total: 2, data: [PaginatedCharacter.mock])
+    },
+    character: {_ in
+        return CharacterAttrs.mock
+    }
+  )
+}
+
+
+extension PaginatedCharacter {
+    
+    static let mock: Self = .init(id: "1", name: "Test name", type: "Type")
+    
+    static let mock2: Self = .init(id: "2", name: "Test name 2", type: "Type 2")
+}
+
+extension CharacterAttrs {
+    
+    static let mock: Self = .init(name: "Test", type: "type", gender: "gender", image: nil, id: "1", status: "status", species: "species")
 }

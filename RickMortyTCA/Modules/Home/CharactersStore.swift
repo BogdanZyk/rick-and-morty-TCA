@@ -62,7 +62,7 @@ struct CharactersStore {
                 return .none
                 
             case let .fetchNextPage(id):
-                if id != state.characters.last?.id, state.next < state.total { return .none }
+                if id != state.characters.last?.id, state.total >= (state.next - 1) { return .none }
                 return .run { send in
                     await send(.fetch)
                 }
@@ -72,7 +72,7 @@ struct CharactersStore {
                 return .run { send in
                     await send(.fetch)
                 }
-            case let .characters(.element(id: _, action: .onAppear(id))):
+            case let .characters(.element(id: id, action: .onAppear)):
                 return .run { send in
                     await send(.fetchNextPage(id))
                 }
@@ -103,7 +103,7 @@ struct CharacterStore {
     
     enum Action {
         case favorite(FavoritingAction)
-        case onAppear(String)
+        case onAppear
     }
     
     let favorite: @Sendable (String, Bool) async throws -> Bool

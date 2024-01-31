@@ -76,7 +76,7 @@ extension HomeView {
                     onTap(viewStore.id)
                 }
                 .onAppear {
-                    viewStore.send(.onAppear(viewStore.id))
+                    viewStore.send(.onAppear)
                 }
             }
         }
