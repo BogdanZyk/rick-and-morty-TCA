@@ -36,7 +36,7 @@ extension RootView {
         HomeView(rootStore: store)
             .tag(RootStore.Tab.home)
             .tabItem { Text("Home") }
-        SearchView()
+        SearchView(rootStore: store)
             .tag(RootStore.Tab.search)
             .tabItem { Text("Search") }
         ProfileView()

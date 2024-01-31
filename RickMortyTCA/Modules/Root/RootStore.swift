@@ -26,7 +26,7 @@ struct RootStore {
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
-            case let .path(action):
+            case .path:
                 return .none
             case let .navigate(path):
                 state.path.append(path)
