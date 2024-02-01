@@ -9,28 +9,19 @@ import SwiftUI
 import ComposableArchitecture
 
 struct PersonDetails: View {
-    let store: StoreOf<DetailsStore>
+    let store: StoreOf<PersonDetailsStore>
     var body: some View {
-        WithViewStore(store, observe: {$0}) { viewStore in
-            if let details = viewStore.personDetails {
-                VStack {
-                    Text(details.name ?? "")
-                    Text(details.type ?? "")
-                    Text(details.gender ?? "")
-                }
-            } else {
-                ProgressView()
-            }
-        }
-        .task {
-            store.send(.fetchPersonDetails)
-            store.send(.fetchEpisodes)
+        VStack {
+            CharacterDetailsView(store: store.scope(state: \.details, action: \.details))
+            Spacer()
+            EpisodesHorizontalListView(store: store.scope(state: \.episodes, action: \.episodes))
+            Spacer()
         }
     }
 }
 
 #Preview {
-    PersonDetails(store: .init(initialState: DetailsStore.State(id: "1"), reducer: {
-        DetailsStore()
+    PersonDetails(store: .init(initialState: PersonDetailsStore.State(id: "1"), reducer: {
+        PersonDetailsStore()
     }))
 }

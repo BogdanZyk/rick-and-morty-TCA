@@ -60,16 +60,16 @@ extension RootStore {
     @Reducer
     struct Path {
         enum State: Equatable, Hashable {
-            case details(DetailsStore.State)
+            case details(PersonDetailsStore.State)
         }
         
         enum Action {
-            case details(DetailsStore.Action)
+            case details(PersonDetailsStore.Action)
         }
         
         var body: some Reducer<State, Action> {
             Scope(state: \.details, action: \.details) {
-                DetailsStore()
+                PersonDetailsStore()
             }
         }
     }
