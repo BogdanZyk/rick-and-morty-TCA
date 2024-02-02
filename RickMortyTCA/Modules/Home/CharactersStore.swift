@@ -22,6 +22,7 @@ struct CharactersStore {
     
     enum Action {
         case characters(IdentifiedActionOf<CharacterStore>)
+        case onTapCell(String)
         case fetch
         case onAppear
         case handleResult(PaginatedResult?)
@@ -67,7 +68,13 @@ struct CharactersStore {
                 return .run { send in
                     await send(.fetchNextPage(id))
                 }
+            case let .characters(.element(id: id, action: .onTap)):
+                return .run { send in
+                    await send(.onTapCell(id))
+                }
             case .characters:
+                return .none
+            case .onTapCell:
                 return .none
             }
         }
@@ -95,6 +102,7 @@ struct CharacterStore {
     enum Action {
         case favorite(FavoritingAction)
         case onAppear
+        case onTap
     }
     
     let favorite: @Sendable (String, Bool) async throws -> Bool

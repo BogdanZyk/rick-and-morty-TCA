@@ -9,7 +9,7 @@ import SwiftUI
 import ComposableArchitecture
 
 struct EpisodesHorizontalListView: View {
-    let store: StoreOf<EpisodesStore>
+    let store: StoreOf<EpisodesListStore>
     var body: some View {
         WithViewStore(store, observe: {$0}) { viewStore in
             ScrollView(.horizontal, showsIndicators: false) {
@@ -34,7 +34,7 @@ struct EpisodesHorizontalListView: View {
 }
 
 #Preview {
-    EpisodesHorizontalListView(store: .init(initialState: EpisodesStore.State(id: "1"), reducer: {
-        EpisodesStore()
+    EpisodesHorizontalListView(store: .init(initialState: EpisodesListStore.State(id: "1"), reducer: {
+        EpisodesListStore()
     }))
 }

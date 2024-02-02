@@ -12,7 +12,7 @@ struct PersonDetailsStore {
     
     struct State: Equatable, Hashable {
         var details: CharacterDetailsStore.State
-        var episodes: EpisodesStore.State
+        var episodes: EpisodesListStore.State
         
         init(id: String) {
             self.details = .init(id: id)
@@ -22,7 +22,7 @@ struct PersonDetailsStore {
     
     enum Action {
         case details(CharacterDetailsStore.Action)
-        case episodes(EpisodesStore.Action)
+        case episodes(EpisodesListStore.Action)
     }
     
     var body: some Reducer<State, Action> {
@@ -30,7 +30,7 @@ struct PersonDetailsStore {
             CharacterDetailsStore()
         }
         Scope(state: \.episodes, action: \.episodes) {
-            EpisodesStore()
+            EpisodesListStore()
         }
     }
 }

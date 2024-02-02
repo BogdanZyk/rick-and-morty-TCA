@@ -10,18 +10,17 @@ import GraphqlAPI
 import ComposableArchitecture
 
 struct HomeView: View {
-    var rootStore: StoreOf<RootStore>?
-    @State private var store = Store(initialState: HomeStore.State()) {
-        HomeStore()
-    }
+    let store: StoreOf<HomeStore>
 
     var body: some View {
-        CharacterList(rootStore: rootStore, store: store.scope(state: \.charactersStore, action: \.charactersStore))
+        CharacterList(store: store.scope(state: \.charactersStore, action: \.charactersStore))
     }
 }
 
 #Preview {
-    HomeView()
+    HomeView(store: .init(initialState: HomeStore.State(), reducer: {
+        HomeStore()
+    }))
 }
 
 
@@ -29,7 +28,6 @@ struct HomeView: View {
 
 struct CharacterList: View {
     @State private var isLoad: Bool = true
-    var rootStore: StoreOf<RootStore>?
     let store: StoreOf<CharactersStore>
     var body: some View {
         WithViewStore(store, observe: {$0}) { viewStore in
@@ -37,8 +35,8 @@ struct CharacterList: View {
                 LazyVStack(alignment: .leading, spacing: 10){
                     
                     ForEachStore(self.store.scope(state: \.characters, action: \.characters)) { rowStore in
-                        CharacterRow(store: rowStore) {
-                            rootStore?.send(.navigate(.details(.init(id: $0))))
+                        CharacterRow(store: rowStore) {_ in
+                            rowStore.send(.onTap)
                         }
                     }
                 }

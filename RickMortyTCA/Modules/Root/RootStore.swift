@@ -12,15 +12,15 @@ import ComposableArchitecture
 struct RootStore {
     
     struct State: Equatable {
+        var tab = TabStore.State()
         var path = StackState<Path.State>()
-        var selectedTab: Tab = .home
     }
     
     enum Action {
-        case tabSelected(Tab)
         case navigate(Path.State)
         case path(StackAction<Path.State, Path.Action>)
         case popToRoot
+        case tab(TabStore.Action)
     }
     
     var body: some Reducer<State, Action> {
@@ -34,25 +34,23 @@ struct RootStore {
             case .popToRoot:
                 state.path.removeAll()
                 return .none
-            case let .tabSelected(tab):
-                state.selectedTab = tab
+            case let .tab(.home(.charactersStore(.onTapCell(id)))):
+                return .run { send in
+                    await send(.navigate(.details(.init(id: id))))
+                }
+            case .tab:
                 return .none
             }
         }
         .forEach(\.path, action: \.path) {
             Path()
         }
+        Scope(state: \.tab, action: \.tab) {
+            TabStore()
+        }
     }
 }
 
-
-extension RootStore {
-    
-    enum Tab: String, CaseIterable {
-        case home, search, profile
-    }
-    
-}
 
 
 extension RootStore {
@@ -75,3 +73,47 @@ extension RootStore {
     }
 }
 
+
+@Reducer
+struct TabStore {
+    
+    struct State: Equatable {
+        var selectedTab: Tab = .home
+        var home = HomeStore.State()
+        var episodes = EpisodesStore.State()
+    }
+    
+    enum Action {
+        case tabSelected(Tab)
+        case home(HomeStore.Action)
+        case episodes(EpisodesStore.Action)
+    }
+    
+    var body: some Reducer<State, Action> {
+        Reduce { state, action in
+            switch action {
+            case let .tabSelected(tab):
+                state.selectedTab = tab
+                return .none
+            case .home:
+                return .none
+            case .episodes:
+                return .none
+            }
+        }
+        Scope(state: \.home, action: \.home) {
+            HomeStore()
+        }
+        Scope(state: \.episodes, action: \.episodes) {
+            EpisodesStore()
+        }
+    }
+}
+
+extension TabStore {
+    
+    enum Tab: String, CaseIterable {
+        case home, episodes, locations
+    }
+    
+}

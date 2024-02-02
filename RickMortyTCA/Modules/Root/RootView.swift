@@ -15,7 +15,7 @@ struct RootView: View {
     var body: some View {
         NavigationStackStore(self.store.scope(state: \.path, action: \.path)) {
             WithViewStore(store, observe: {$0}) { viewStore in
-                TabView(selection: viewStore.binding(get: \.selectedTab, send: RootStore.Action.tabSelected)) {
+                TabView(selection: viewStore.binding(get: \.tab.selectedTab, send: { RootStore.Action.tab(.tabSelected($0))} )) {
                     makeRootView()
                 }
             }
@@ -33,14 +33,11 @@ extension RootView {
     
     @ViewBuilder
     private func makeRootView() -> some View {
-        HomeView(rootStore: store)
-            .tag(RootStore.Tab.home)
+        HomeView(store: store.scope(state: \.tab.home, action: \.tab.home))
+            .tag(TabStore.Tab.home)
             .tabItem { Text("Home") }
-        SearchView(rootStore: store)
-            .tag(RootStore.Tab.search)
-            .tabItem { Text("Search") }
-        ProfileView()
-            .tag(RootStore.Tab.profile)
+        EpisodesView(store: store.scope(state: \.tab.episodes, action: \.tab.episodes))
+            .tag(TabStore.Tab.episodes)
             .tabItem { Text("Profile") }
     }
     
