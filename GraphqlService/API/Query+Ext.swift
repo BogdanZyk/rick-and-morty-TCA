@@ -24,9 +24,9 @@ extension PaginatedCharacter: Searchable {
 
 extension PaginatedEpisodes: Searchable {
     
-    static let mock: Self = .init(id: "1", name: "Episode name", air_date: "date", episode: "Episode", characters: [.init(id: "1", name: "Rick")])
+    static let mock: Self = .init(id: "1", name: "Episode 1", air_date: "date", episode: "S01E01", characters: [.init(id: "1", name: "Rick")])
     
-    static let mock2: Self = .init(id: "2", name: "Episode name 2", air_date: "date", episode: "Episode", characters: [.init(id: "1", name: "Rick")])
+    static let mock2: Self = .init(id: "2", name: "Episode 2", air_date: "date", episode: "S01E02", characters: [.init(id: "1", name: "Rick")])
     
     var searchItem: SearchItem {
         .init(id: id, title: name, subtitle: episode, image: nil, type: .episodes)
