@@ -41,7 +41,7 @@ extension RootView {
     
     @ViewBuilder
     private func makeRootView() -> some View {
-        HomeView(store: store.scope(state: \.tab.characters,
+        CharactersView(store: store.scope(state: \.tab.characters,
                                     action: \.tab.characters))
         .tag(TabStore.Tab.characters)
         .tabItem { Text("Characters") }

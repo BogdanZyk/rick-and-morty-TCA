@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  CharactersView.swift
 //  RickMortyTCA
 //
 //  Created by Bogdan Zykov on 30.01.2024.
@@ -9,7 +9,7 @@ import SwiftUI
 import GraphqlAPI
 import ComposableArchitecture
 
-struct HomeView: View {
+struct CharactersView: View {
     let store: StoreOf<HomeStore>
 
     var body: some View {
@@ -20,21 +20,9 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(store: .init(initialState: HomeStore.State(), reducer: {
+    CharactersView(store: .init(initialState: HomeStore.State(), reducer: {
         HomeStore()
     }, withDependencies: {
         $0.apiClient = .testValue
     }))
 }
-
-
-//extension HomeView {
-//    
-//    private var searchBar: some View {
-//        HStack {
-//            Text("Search")
-//            Im
-//        }
-//    }
-//    
-//}
