@@ -22,6 +22,7 @@ Possible features of the application:
 - Search
 - Favorite action
 - Pagination support for data
+- Unit tests
 
 ## Screenshots 📷
 
