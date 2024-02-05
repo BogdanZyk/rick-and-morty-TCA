@@ -59,15 +59,20 @@ extension RootStore {
     struct Path {
         enum State: Equatable, Hashable {
             case details(PersonDetailsStore.State)
+            case search(SearchStore.State)
         }
         
         enum Action {
             case details(PersonDetailsStore.Action)
+            case search(SearchStore.Action)
         }
         
         var body: some Reducer<State, Action> {
             Scope(state: \.details, action: \.details) {
                 PersonDetailsStore()
+            }
+            Scope(state: \.search, action: \.search) {
+                SearchStore()
             }
         }
     }
@@ -78,7 +83,7 @@ extension RootStore {
 struct TabStore {
     
     struct State: Equatable {
-        var selectedTab: Tab = .home
+        var selectedTab: Tab = .characters
         var home = HomeStore.State()
         var episodes = EpisodesStore.State()
     }
@@ -113,7 +118,7 @@ struct TabStore {
 extension TabStore {
     
     enum Tab: String, CaseIterable {
-        case home, episodes, locations
+        case characters, episodes, locations
     }
     
 }

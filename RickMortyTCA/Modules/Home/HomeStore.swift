@@ -11,7 +11,7 @@ import GraphqlAPI
 @Reducer
 struct HomeStore {
     
-    struct State: Equatable{
+    struct State: Equatable {
         var charactersStore = CharactersStore.State()
     }
     

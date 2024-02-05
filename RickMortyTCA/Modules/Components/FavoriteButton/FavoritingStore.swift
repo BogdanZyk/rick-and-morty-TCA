@@ -20,7 +20,7 @@ enum FavoritingAction {
     case buttonTapped
     case response(Result<Bool, Error>)
     
-    enum Alert: Equatable {}
+    enum Alert: Equatable, Hashable {}
 }
 
 @Reducer

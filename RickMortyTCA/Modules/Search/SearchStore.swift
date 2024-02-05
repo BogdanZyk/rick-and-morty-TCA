@@ -15,7 +15,7 @@ struct SearchStore {
     @Dependency(\.apiClient) private var apiClient
     
     @ObservableState
-    struct State: Equatable {
+    struct State: Equatable, Hashable {
         var results: IdentifiedArrayOf<CharacterStore.State> = []
         var searchQuery = ""
         var loader: Bool = false

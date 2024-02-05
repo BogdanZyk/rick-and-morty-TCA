@@ -87,7 +87,7 @@ struct CharactersStore {
 
 @Reducer
 struct CharacterStore {
-    struct State: Equatable, Identifiable {
+    struct State: Equatable, Identifiable, Hashable {
         var alert: AlertState<FavoritingAction.Alert>?
         var id: String { character.id ?? "1" }
         var isFavorite: Bool = false

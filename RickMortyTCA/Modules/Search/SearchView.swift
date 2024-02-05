@@ -9,10 +9,9 @@ import SwiftUI
 import ComposableArchitecture
 
 struct SearchView: View {
+    @FocusState private var isFocus: Bool
     var rootStore: StoreOf<RootStore>?
-    @State private var store = Store(initialState: SearchStore.State()) {
-        SearchStore()
-    }
+    @Bindable var store: StoreOf<SearchStore>
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
@@ -23,6 +22,7 @@ struct SearchView: View {
                 .textFieldStyle(.roundedBorder)
                 .autocapitalization(.none)
                 .disableAutocorrection(true)
+                .focused($isFocus)
             }
             .padding(.horizontal, 16)
             ScrollView {
@@ -47,9 +47,16 @@ struct SearchView: View {
                 await store.send(.searchQueryChangeDebounced).finish()
             }
         }
+        .toolbarTitleDisplayMode(.inline)
+        .task {
+            try? await Task.sleep(for: .milliseconds(400))
+            isFocus = true
+        }
     }
 }
 
 #Preview {
-    SearchView()
+    SearchView(store: .init(initialState: SearchStore.State(), reducer: {
+        SearchStore()
+    }))
 }
