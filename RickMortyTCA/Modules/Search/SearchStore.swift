@@ -66,7 +66,7 @@ struct SearchStore {
     
     enum SearchType {
         
-        case characters, episodes, location
+        case characters, episodes, locations
         
         func getResult(_ apiClient: APIClient, query: String) async -> Result<[SearchItem], Error> {
             
@@ -81,7 +81,7 @@ struct SearchStore {
                     let result = try await apiClient.searchEpisodes(query: query)
                     return result.compactMap({$0.searchItem})
                 }
-            case .location:
+            case .locations:
                 return await Result {
                     let result = try await apiClient.searchLocations(query: query)
                     return result.compactMap({$0.searchItem})

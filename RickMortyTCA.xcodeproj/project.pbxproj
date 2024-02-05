@@ -48,7 +48,6 @@
 		5A4D4D2F2B7108790029D4CC /* Nuke in Frameworks */ = {isa = PBXBuildFile; productRef = 5A4D4D2E2B7108790029D4CC /* Nuke */; };
 		5A4D4D312B7108790029D4CC /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 5A4D4D302B7108790029D4CC /* NukeExtensions */; };
 		5A4D4D332B7108790029D4CC /* NukeUI in Frameworks */ = {isa = PBXBuildFile; productRef = 5A4D4D322B7108790029D4CC /* NukeUI */; };
-		5A6A84FA2B6D26DE0003FEF6 /* AppStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6A84F92B6D26DE0003FEF6 /* AppStore.swift */; };
 		5A6A84FD2B6D29570003FEF6 /* LocationsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6A84FC2B6D29570003FEF6 /* LocationsStore.swift */; };
 		5A6A84FF2B6D297E0003FEF6 /* LocationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6A84FE2B6D297E0003FEF6 /* LocationsView.swift */; };
 		5AE46D422B70F239001C7863 /* SearchStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AE46D412B70F239001C7863 /* SearchStoreTests.swift */; };
@@ -105,7 +104,6 @@
 		5A4D4D272B7100410029D4CC /* EpisodesStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesStoreTests.swift; sourceTree = "<group>"; };
 		5A4D4D292B7103FB0029D4CC /* LocationsStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsStoreTests.swift; sourceTree = "<group>"; };
 		5A4D4D2B2B7107FF0029D4CC /* NukeImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NukeImage.swift; sourceTree = "<group>"; };
-		5A6A84F92B6D26DE0003FEF6 /* AppStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStore.swift; sourceTree = "<group>"; };
 		5A6A84FC2B6D29570003FEF6 /* LocationsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsStore.swift; sourceTree = "<group>"; };
 		5A6A84FE2B6D297E0003FEF6 /* LocationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsView.swift; sourceTree = "<group>"; };
 		5AE46D412B70F239001C7863 /* SearchStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStoreTests.swift; sourceTree = "<group>"; };
@@ -238,7 +236,6 @@
 			children = (
 				5A2D11342B68E69500FE13A4 /* RootStore.swift */,
 				5A2D11442B68EC9F00FE13A4 /* RootView.swift */,
-				5A6A84F92B6D26DE0003FEF6 /* AppStore.swift */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -516,7 +513,6 @@
 				5A2D113F2B68E8F700FE13A4 /* HomeView.swift in Sources */,
 				5AE46D442B70F3FC001C7863 /* Query+Ext.swift in Sources */,
 				5A4D4D2C2B7107FF0029D4CC /* NukeImage.swift in Sources */,
-				5A6A84FA2B6D26DE0003FEF6 /* AppStore.swift in Sources */,
 				5A49C00A2B6BE16A006FCCB2 /* PersonDetailsStore.swift in Sources */,
 				5A2D11672B69150F00FE13A4 /* APIClient.swift in Sources */,
 				5A2D11322B68E5F500FE13A4 /* View.swift in Sources */,

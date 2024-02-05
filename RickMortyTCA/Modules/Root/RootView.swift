@@ -80,13 +80,11 @@ extension RootView {
     private func makeToolbarItems(_ viewStore: ViewStore<RootStore.State, RootStore.Action>) -> some ToolbarContent {
         Group {
             let tabType = viewStore.tab.selectedTab
-            if tabType == .characters || tabType == .episodes {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button {
-                        viewStore.send(.navigate(.search(.init(type: tabType == .characters ? .characters : .episodes))))
-                    } label: {
-                        Image(systemName: "magnifyingglass")
-                    }
+            ToolbarItem(placement: .confirmationAction) {
+                Button {
+                    viewStore.send(.navigate(.search(.init(type: tabType.searchType))))
+                } label: {
+                    Image(systemName: "magnifyingglass")
                 }
             }
         }

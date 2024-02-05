@@ -126,6 +126,17 @@ extension TabStore {
     
     enum Tab: String, CaseIterable {
         case characters, episodes, locations
+        
+        var searchType: SearchStore.SearchType {
+            switch self {
+            case .characters:
+                return .characters
+            case .episodes:
+                return .episodes
+            case .locations:
+                return .locations
+            }
+        }
     }
     
 }

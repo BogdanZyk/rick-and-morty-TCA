@@ -40,7 +40,7 @@ extension PaginatedLocation: Searchable {
     static let mock2: Self = .init(id: "2", name: "Location name 2", type: "type", dimension: "dimension", residents: [.init(id: "1", name: "Rick")])
     
     var searchItem: SearchItem {
-        .init(id: id, title: name, subtitle: dimension, image: nil, type: .location)
+        .init(id: id, title: name, subtitle: dimension, image: nil, type: .locations)
     }
 }
 

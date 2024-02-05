@@ -90,7 +90,7 @@ extension SearchView {
                 rootStore?.send(.navigate(.details(.init(id: id))))
             case .episodes:
                 return
-            case .location:
+            case .locations:
                 return
             }
         }
