@@ -13,16 +13,24 @@ struct CharacterRow: View {
     let onTap: (String) -> Void
     var body: some View {
         WithViewStore(store, observe: {$0}) { viewStore in
-            HStack {
+            VStack(alignment: .leading, spacing: 0) {
+                Color.secondary.opacity(0.1)
                 VStack(alignment: .leading) {
                     Text(viewStore.character.name ?? "")
+                        .bold()
                     Text(viewStore.character.type ?? "")
+                        .foregroundStyle(.secondary)
                 }
-                Spacer()
-                FavoriteButton(store: self.store.scope(state: \.favorite, action: \.favorite))
+                .font(.callout)
+                .lineLimit(1)
+                .padding(10)
             }
-            .hLeading()
-            .padding()
+            .frame(height: getRect().height / 3)
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .overlay(alignment: .topTrailing) {
+                FavoriteButton(store: self.store.scope(state: \.favorite, action: \.favorite))
+                    .padding()
+            }
             .background(Color.secondary.opacity(0.1), in: RoundedRectangle(cornerRadius: 10))
             .onTapGesture {
                 onTap(viewStore.id)
@@ -35,7 +43,12 @@ struct CharacterRow: View {
 }
 
 #Preview {
-    CharacterRow(store: .init(initialState: CharacterStore.State(character: .mock), reducer: {
-        CharacterStore(favorite: {_,_ in false})
-    }), onTap: {_ in})
+    CharacterList(store: .init(initialState: CharactersStore.State(), reducer: {
+        CharactersStore()
+    }, withDependencies: {
+        $0.apiClient = .testValue
+    }))
+//    CharacterRow(store: .init(initialState: CharacterStore.State(character: .mock), reducer: {
+//        CharacterStore(favorite: {_,_ in false})
+//    }), onTap: {_ in})
 }

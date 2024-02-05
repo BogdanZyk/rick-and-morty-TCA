@@ -9,13 +9,13 @@ import SwiftUI
 import ComposableArchitecture
 
 struct CharacterList: View {
+   private let columns = Array(repeating: GridItem(.flexible()), count: 2)
     @State private var isLoad: Bool = true
     let store: StoreOf<CharactersStore>
     var body: some View {
         WithViewStore(store, observe: {$0}) { viewStore in
             ScrollView(.vertical, showsIndicators: false) {
-                LazyVStack(alignment: .leading, spacing: 10){
-                    
+                LazyVGrid(columns: columns, spacing: 10) {
                     ForEachStore(self.store.scope(state: \.characters, action: \.characters)) { rowStore in
                         CharacterRow(store: rowStore) {_ in
                             rowStore.send(.onTap)
@@ -44,6 +44,6 @@ struct CharacterList: View {
     CharacterList(store: .init(initialState: CharactersStore.State(), reducer: {
         CharactersStore()
     }, withDependencies: {
-        $0.apiClient = .testValue
+        $0.apiClient = .liveValue
     }))
 }
