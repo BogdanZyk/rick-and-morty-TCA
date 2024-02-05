@@ -25,7 +25,7 @@ struct CharactersStore {
         case onTapCell(String)
         case fetch
         case onAppear
-        case handleResult(PaginatedResult?)
+        case handleResult(PaginatedResult<PaginatedCharacter>?)
         case fetchNextPage(String?)
         case refetch
     }

@@ -26,6 +26,10 @@ public enum SchemaMetadata: ApolloAPI.SchemaMetadata {
     case "Characters": return GraphqlAPI.Objects.Characters
     case "Info": return GraphqlAPI.Objects.Info
     case "Character": return GraphqlAPI.Objects.Character
+    case "Locations": return GraphqlAPI.Objects.Locations
+    case "Location": return GraphqlAPI.Objects.Location
+    case "Episodes": return GraphqlAPI.Objects.Episodes
+    case "Episode": return GraphqlAPI.Objects.Episode
     default: return nil
     }
   }

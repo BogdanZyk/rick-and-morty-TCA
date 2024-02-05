@@ -3,20 +3,20 @@
 
 @_exported import ApolloAPI
 
-public class PaginatedCharactersQuery: GraphQLQuery {
-  public static let operationName: String = "PaginatedCharacters"
+public class PaginatedLocationsQuery: GraphQLQuery {
+  public static let operationName: String = "PaginatedLocations"
   public static let operationDocument: ApolloAPI.OperationDocument = .init(
     definition: .init(
-      #"query PaginatedCharacters($page: Int, $filter: FilterCharacter) { characters(page: $page, filter: $filter) { __typename info { __typename ...PaginatedInfo } results { __typename ...PaginatedCharacter } } }"#,
-      fragments: [PaginatedCharacter.self, PaginatedInfo.self]
+      #"query PaginatedLocations($page: Int, $filter: FilterLocation) { locations(page: $page, filter: $filter) { __typename info { __typename ...PaginatedInfo } results { __typename ...PaginatedLocation } } }"#,
+      fragments: [PaginatedInfo.self, PaginatedLocation.self]
     ))
 
   public var page: GraphQLNullable<Int>
-  public var filter: GraphQLNullable<FilterCharacter>
+  public var filter: GraphQLNullable<FilterLocation>
 
   public init(
     page: GraphQLNullable<Int>,
-    filter: GraphQLNullable<FilterCharacter>
+    filter: GraphQLNullable<FilterLocation>
   ) {
     self.page = page
     self.filter = filter
@@ -33,37 +33,37 @@ public class PaginatedCharactersQuery: GraphQLQuery {
 
     public static var __parentType: ApolloAPI.ParentType { GraphqlAPI.Objects.Query }
     public static var __selections: [ApolloAPI.Selection] { [
-      .field("characters", Characters?.self, arguments: [
+      .field("locations", Locations?.self, arguments: [
         "page": .variable("page"),
         "filter": .variable("filter")
       ]),
     ] }
 
-    /// Get the list of all characters
-    public var characters: Characters? { __data["characters"] }
+    /// Get the list of all locations
+    public var locations: Locations? { __data["locations"] }
 
     public init(
-      characters: Characters? = nil
+      locations: Locations? = nil
     ) {
       self.init(_dataDict: DataDict(
         data: [
           "__typename": GraphqlAPI.Objects.Query.typename,
-          "characters": characters._fieldData,
+          "locations": locations._fieldData,
         ],
         fulfilledFragments: [
-          ObjectIdentifier(PaginatedCharactersQuery.Data.self)
+          ObjectIdentifier(PaginatedLocationsQuery.Data.self)
         ]
       ))
     }
 
-    /// Characters
+    /// Locations
     ///
-    /// Parent Type: `Characters`
-    public struct Characters: GraphqlAPI.SelectionSet {
+    /// Parent Type: `Locations`
+    public struct Locations: GraphqlAPI.SelectionSet {
       public let __data: DataDict
       public init(_dataDict: DataDict) { __data = _dataDict }
 
-      public static var __parentType: ApolloAPI.ParentType { GraphqlAPI.Objects.Characters }
+      public static var __parentType: ApolloAPI.ParentType { GraphqlAPI.Objects.Locations }
       public static var __selections: [ApolloAPI.Selection] { [
         .field("__typename", String.self),
         .field("info", Info?.self),
@@ -79,17 +79,17 @@ public class PaginatedCharactersQuery: GraphQLQuery {
       ) {
         self.init(_dataDict: DataDict(
           data: [
-            "__typename": GraphqlAPI.Objects.Characters.typename,
+            "__typename": GraphqlAPI.Objects.Locations.typename,
             "info": info._fieldData,
             "results": results._fieldData,
           ],
           fulfilledFragments: [
-            ObjectIdentifier(PaginatedCharactersQuery.Data.Characters.self)
+            ObjectIdentifier(PaginatedLocationsQuery.Data.Locations.self)
           ]
         ))
       }
 
-      /// Characters.Info
+      /// Locations.Info
       ///
       /// Parent Type: `Info`
       public struct Info: GraphqlAPI.SelectionSet {
@@ -125,64 +125,63 @@ public class PaginatedCharactersQuery: GraphQLQuery {
               "pages": pages,
             ],
             fulfilledFragments: [
-              ObjectIdentifier(PaginatedCharactersQuery.Data.Characters.Info.self),
+              ObjectIdentifier(PaginatedLocationsQuery.Data.Locations.Info.self),
               ObjectIdentifier(PaginatedInfo.self)
             ]
           ))
         }
       }
 
-      /// Characters.Result
+      /// Locations.Result
       ///
-      /// Parent Type: `Character`
+      /// Parent Type: `Location`
       public struct Result: GraphqlAPI.SelectionSet {
         public let __data: DataDict
         public init(_dataDict: DataDict) { __data = _dataDict }
 
-        public static var __parentType: ApolloAPI.ParentType { GraphqlAPI.Objects.Character }
+        public static var __parentType: ApolloAPI.ParentType { GraphqlAPI.Objects.Location }
         public static var __selections: [ApolloAPI.Selection] { [
           .field("__typename", String.self),
-          .fragment(PaginatedCharacter.self),
+          .fragment(PaginatedLocation.self),
         ] }
 
-        /// The id of the character.
+        /// The id of the location.
         public var id: GraphqlAPI.ID? { __data["id"] }
-        /// The name of the character.
+        /// The name of the location.
         public var name: String? { __data["name"] }
-        /// The type or subspecies of the character.
+        /// The type of the location.
         public var type: String? { __data["type"] }
-        /// The gender of the character ('Female', 'Male', 'Genderless' or 'unknown').
-        public var gender: String? { __data["gender"] }
-        /// Link to the character's image.
-        /// All images are 300x300px and most are medium shots or portraits since they are intended to be used as avatars.
-        public var image: String? { __data["image"] }
+        /// The dimension in which the location is located.
+        public var dimension: String? { __data["dimension"] }
+        /// List of characters who have been last seen in the location.
+        public var residents: [PaginatedLocation.Resident?] { __data["residents"] }
 
         public struct Fragments: FragmentContainer {
           public let __data: DataDict
           public init(_dataDict: DataDict) { __data = _dataDict }
 
-          public var paginatedCharacter: PaginatedCharacter { _toFragment() }
+          public var paginatedLocation: PaginatedLocation { _toFragment() }
         }
 
         public init(
           id: GraphqlAPI.ID? = nil,
           name: String? = nil,
           type: String? = nil,
-          gender: String? = nil,
-          image: String? = nil
+          dimension: String? = nil,
+          residents: [PaginatedLocation.Resident?]
         ) {
           self.init(_dataDict: DataDict(
             data: [
-              "__typename": GraphqlAPI.Objects.Character.typename,
+              "__typename": GraphqlAPI.Objects.Location.typename,
               "id": id,
               "name": name,
               "type": type,
-              "gender": gender,
-              "image": image,
+              "dimension": dimension,
+              "residents": residents._fieldData,
             ],
             fulfilledFragments: [
-              ObjectIdentifier(PaginatedCharactersQuery.Data.Characters.Result.self),
-              ObjectIdentifier(PaginatedCharacter.self)
+              ObjectIdentifier(PaginatedLocationsQuery.Data.Locations.Result.self),
+              ObjectIdentifier(PaginatedLocation.self)
             ]
           ))
         }

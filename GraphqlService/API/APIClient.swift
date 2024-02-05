@@ -11,7 +11,7 @@ import GraphqlAPI
 
 @DependencyClient
 struct APIClient {
-    var paginatedCharacters: @Sendable (_ page: Int) async throws -> PaginatedResult?
+    var paginatedCharacters: @Sendable (_ page: Int) async throws -> PaginatedResult<PaginatedCharacter>?
     var character: @Sendable (_ id: String) async throws -> CharacterAttrs?
     var searchCharacters: @Sendable (_ query: String) async throws -> [PaginatedCharacter]
     var favorite:  @Sendable (_ id: String, _ isFavorite: Bool) async throws -> Bool

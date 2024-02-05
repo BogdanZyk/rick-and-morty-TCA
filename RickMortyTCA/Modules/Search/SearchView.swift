@@ -27,10 +27,10 @@ struct SearchView: View {
             .padding(.horizontal, 16)
             ScrollView {
                 LazyVStack(alignment: .leading, spacing: 10) {
-                    ForEachStore(self.store.scope(state: \.results, action: \.characters)) { rowStore in
-                        CharacterRow(store: rowStore) {
-                            rootStore?.send(.navigate(.details(.init(id: $0))))
-                        }
+                    if store.type == .characters {
+                        charactersList
+                    } else {
+                        episodesList
                     }
                 }
                 .padding()
@@ -59,4 +59,24 @@ struct SearchView: View {
     SearchView(store: .init(initialState: SearchStore.State(), reducer: {
         SearchStore()
     }))
+}
+
+
+extension SearchView {
+    
+    private var charactersList: some View {
+        ForEachStore(self.store.scope(state: \.characters, action: \.characters)) { rowStore in
+            CharacterRow(store: rowStore) {
+                rootStore?.send(.navigate(.details(.init(id: $0))))
+            }
+        }
+    }
+    
+    private var episodesList: some View {
+        ForEachStore(self.store.scope(state: \.episodes, action: \.episodes)) { rowStore in
+            CharacterRow(store: rowStore) {
+                rootStore?.send(.navigate(.details(.init(id: $0))))
+            }
+        }
+    }
 }

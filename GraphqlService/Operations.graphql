@@ -2,8 +2,7 @@
 query PaginatedCharacters($page: Int, $filter: FilterCharacter) {
   characters(page: $page, filter: $filter) {
     info {
-      next
-      pages
+      ...PaginatedInfo
     }
     results {
       ...PaginatedCharacter
@@ -19,6 +18,10 @@ fragment PaginatedCharacter on Character {
   image
 }
 
+fragment PaginatedInfo on Info {
+  next
+  pages
+}
 
 query Character($characterId: ID!) {
   character(id: $characterId) {
@@ -34,4 +37,48 @@ fragment CharacterAttrs on Character {
   id
   status
   species
+}
+
+query PaginatedLocations($page: Int, $filter: FilterLocation) {
+  locations(page: $page, filter: $filter) {
+    info {
+     ...PaginatedInfo
+    }
+    results {
+      ...PaginatedLocation
+    }
+  }
+}
+
+fragment PaginatedLocation on Location {
+      id
+      name
+      type
+      dimension
+      residents {
+        id
+        name
+      }
+}
+
+query PaginatedEpisodes($page: Int, $filter: FilterEpisode) {
+  episodes(page: $page, filter: $filter) {
+    info {
+      ...PaginatedInfo
+    }
+    results {
+      ...PaginatedEpisodes
+    }
+  }
+}
+
+fragment PaginatedEpisodes on Episode {
+      id
+      name
+      air_date
+      episode
+      characters {
+        id
+        name
+      }
 }
