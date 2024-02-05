@@ -34,7 +34,7 @@ struct RootStore {
             case .popToRoot:
                 state.path.removeAll()
                 return .none
-            case let .tab(.home(.charactersStore(.onTapCell(id)))):
+            case let .tab(.characters(.charactersStore(.onTapCell(id)))):
                 return .run { send in
                     await send(.navigate(.details(.init(id: id))))
                 }
@@ -84,14 +84,16 @@ struct TabStore {
     
     struct State: Equatable {
         var selectedTab: Tab = .characters
-        var home = HomeStore.State()
+        var characters = HomeStore.State()
         var episodes = EpisodesStore.State()
+        var locations = LocationsStore.State()
     }
     
     enum Action {
         case tabSelected(Tab)
-        case home(HomeStore.Action)
+        case characters(HomeStore.Action)
         case episodes(EpisodesStore.Action)
+        case locations(LocationsStore.Action)
     }
     
     var body: some Reducer<State, Action> {
@@ -100,17 +102,22 @@ struct TabStore {
             case let .tabSelected(tab):
                 state.selectedTab = tab
                 return .none
-            case .home:
+            case .characters:
                 return .none
             case .episodes:
                 return .none
+            case .locations:
+                return .none
             }
         }
-        Scope(state: \.home, action: \.home) {
+        Scope(state: \.characters, action: \.characters) {
             HomeStore()
         }
         Scope(state: \.episodes, action: \.episodes) {
             EpisodesStore()
+        }
+        Scope(state: \.locations, action: \.locations) {
+            LocationsStore()
         }
     }
 }

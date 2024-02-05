@@ -41,14 +41,20 @@ extension RootView {
     
     @ViewBuilder
     private func makeRootView() -> some View {
-        HomeView(store: store.scope(state: \.tab.home, action: \.tab.home))
-            .tag(TabStore.Tab.characters)
-            .tabItem { Text("Characters") }
-            
-            
-        EpisodesView(store: store.scope(state: \.tab.episodes, action: \.tab.episodes))
-            .tag(TabStore.Tab.episodes)
-            .tabItem { Text("Episodes") }
+        HomeView(store: store.scope(state: \.tab.characters,
+                                    action: \.tab.characters))
+        .tag(TabStore.Tab.characters)
+        .tabItem { Text("Characters") }
+        
+        EpisodesView(rootStore: store,
+                     store: store.scope(state: \.tab.episodes, action: \.tab.episodes))
+        .tag(TabStore.Tab.episodes)
+        .tabItem { Text("Episodes") }
+        
+        LocationsView(store: store.scope(state: \.tab.locations,
+                                         action: \.tab.locations))
+        .tag(TabStore.Tab.locations)
+        .tabItem { Text("Locations") }
     }
     
     
