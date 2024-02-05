@@ -74,17 +74,17 @@ struct SearchStore {
             case .characters:
                 return await Result {
                    let result = try await apiClient.searchCharacters(query: query)
-                    return result.compactMap({.init(id: $0.id, title: $0.name, subtitle: $0.gender, image: $0.image, type: .characters)})
+                    return result.compactMap({$0.searchItem})
                 }
             case .episodes:
                 return await Result {
                     let result = try await apiClient.searchEpisodes(query: query)
-                    return result.compactMap({.init(id: $0.id, title: $0.name, subtitle: $0.episode, type: .episodes)})
+                    return result.compactMap({$0.searchItem})
                 }
             case .location:
                 return await Result {
                     let result = try await apiClient.searchLocations(query: query)
-                    return result.compactMap({.init(id: $0.id, title: $0.name, subtitle: $0.dimension, type: .location)})
+                    return result.compactMap({$0.searchItem})
                 }
             }
         }

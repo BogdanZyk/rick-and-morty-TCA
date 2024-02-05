@@ -95,30 +95,3 @@ extension APIClient: TestDependencyKey {
         }
     )
 }
-
-extension PaginatedCharacter {
-    
-    static let mock: Self = .init(id: "1", name: "Test name", type: "Type")
-    
-    static let mock2: Self = .init(id: "2", name: "Test name 2", type: "Type 2")
-}
-
-extension CharacterAttrs {
-    
-    static let mock: Self = .init(name: "Test", type: "type", gender: "gender", image: nil, id: "1", status: "status", species: "species")
-}
-
-extension PaginatedEpisodes {
-    
-    static let mock: Self = .init(id: "1", name: "Episode name", air_date: "date", episode: "Episode", characters: [.init(id: "1", name: "Rick")])
-    
-    static let mock2: Self = .init(id: "2", name: "Episode name 2", air_date: "date", episode: "Episode", characters: [.init(id: "1", name: "Rick")])
-    
-}
-
-extension PaginatedLocation {
-    
-    static let mock: Self = .init(id: "1", name: "Location name 1", type: "type", dimension: "dimension", residents: [.init(id: "1", name: "Rick")])
-    
-    static let mock2: Self = .init(id: "2", name: "Location name 2", type: "type", dimension: "dimension", residents: [.init(id: "1", name: "Rick")])
-}

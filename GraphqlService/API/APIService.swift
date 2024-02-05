@@ -113,8 +113,3 @@ struct PaginatedResult<T: Identifiable> {
         total > next
     }
 }
-
-
-extension PaginatedCharacter: Identifiable {}
-extension PaginatedLocation: Identifiable {}
-extension PaginatedEpisodes: Identifiable {}
