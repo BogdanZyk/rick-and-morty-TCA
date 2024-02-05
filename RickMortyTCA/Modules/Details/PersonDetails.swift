@@ -14,8 +14,6 @@ struct PersonDetails: View {
         VStack {
             CharacterDetailsView(store: store.scope(state: \.details, action: \.details))
             Spacer()
-            EpisodesHorizontalListView(store: store.scope(state: \.episodes, action: \.episodes))
-            Spacer()
         }
     }
 }

@@ -14,7 +14,13 @@ struct CharacterRow: View {
     var body: some View {
         WithViewStore(store, observe: {$0}) { viewStore in
             VStack(alignment: .leading, spacing: 0) {
-                Color.secondary.opacity(0.1)
+                GeometryReader { proxy in
+                    NukeImage(strUrl: viewStore.character.image,
+                              resizeSize: .init(width: proxy.size.width, height: proxy.size.height),
+                              contentMode: .aspectFill,
+                              crop: true)
+                }
+                
                 VStack(alignment: .leading) {
                     Text(viewStore.character.name ?? "")
                         .bold()
@@ -25,6 +31,7 @@ struct CharacterRow: View {
                 .lineLimit(1)
                 .padding(10)
             }
+            .allFrame()
             .frame(height: getRect().height / 3)
             .clipShape(RoundedRectangle(cornerRadius: 16))
             .overlay(alignment: .topTrailing) {

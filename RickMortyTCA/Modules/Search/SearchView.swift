@@ -67,8 +67,9 @@ extension SearchView {
     private func rowView(_ item: SearchItem) -> some View {
         HStack(alignment: .top) {
             if let image = item.image {
-                RoundedRectangle(cornerRadius: 12)
+                NukeImage(strUrl: image, resizeSize: .init(width: 60, height: 60), contentMode: .aspectFill, crop: true)
                     .frame(width: 60, height: 60)
+                    .roundedCorner(16, corners: .allCorners)
             }
             VStack(alignment: .leading) {
                 Text(item.title ?? "")
