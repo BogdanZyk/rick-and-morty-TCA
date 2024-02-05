@@ -26,11 +26,9 @@ struct SearchView: View {
             }
             .padding(.horizontal, 16)
             ScrollView {
-                LazyVStack(alignment: .leading, spacing: 10) {
-                    if store.type == .characters {
-                        charactersList
-                    } else {
-                        episodesList
+                LazyVStack(alignment: .leading, spacing: 0) {
+                    ForEach(store.results) {
+                        rowView($0)
                     }
                 }
                 .padding()
@@ -56,27 +54,45 @@ struct SearchView: View {
 }
 
 #Preview {
-    SearchView(store: .init(initialState: SearchStore.State(), reducer: {
+    SearchView(store: .init(initialState: SearchStore.State(type: .characters), reducer: {
         SearchStore()
+    }, withDependencies: {
+        $0.apiClient = .testValue
     }))
 }
 
 
 extension SearchView {
     
-    private var charactersList: some View {
-        ForEachStore(self.store.scope(state: \.characters, action: \.characters)) { rowStore in
-            CharacterRow(store: rowStore) {
-                rootStore?.send(.navigate(.details(.init(id: $0))))
+    private func rowView(_ item: SearchItem) -> some View {
+        HStack(alignment: .top) {
+            if let image = item.image {
+                RoundedRectangle(cornerRadius: 12)
+                    .frame(width: 60, height: 60)
+            }
+            VStack(alignment: .leading) {
+                Text(item.title ?? "")
+                    .bold()
+                Text(item.subtitle ?? "")
+            }
+            .padding(.top, 5)
+            .font(.callout)
+        }
+        .hLeading()
+        .padding(.vertical, 10)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            guard let id = item.id else { return }
+            switch item.type {
+                
+            case .characters:
+                rootStore?.send(.navigate(.details(.init(id: id))))
+            case .episodes:
+                return
+            case .location:
+                return
             }
         }
     }
     
-    private var episodesList: some View {
-        ForEachStore(self.store.scope(state: \.episodes, action: \.episodes)) { rowStore in
-            CharacterRow(store: rowStore) {
-                rootStore?.send(.navigate(.details(.init(id: $0))))
-            }
-        }
-    }
 }

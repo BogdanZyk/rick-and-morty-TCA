@@ -59,13 +59,13 @@ extension RootView {
                 CaseLet(
                     \RootStore.Path.State.details,
                      action: RootStore.Path.Action.details) {
-                         PersonDetails.init(store:$0)
+                         PersonDetails(store:$0)
                      }
             case .search:
                 CaseLet(
                     \RootStore.Path.State.search,
                      action: RootStore.Path.Action.search) {
-                         SearchView.init(store: $0)
+                         SearchView(rootStore: store, store: $0)
                      }
             }
         }

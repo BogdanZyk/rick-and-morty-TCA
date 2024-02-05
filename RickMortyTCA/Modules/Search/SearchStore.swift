@@ -17,8 +17,7 @@ struct SearchStore {
     @ObservableState
     struct State: Equatable, Hashable {
         var type: SearchType = .characters
-        var episodes: IdentifiedArrayOf<CharacterStore.State> = []
-        var characters: IdentifiedArrayOf<CharacterStore.State> = []
+        var results = [SearchItem]()
         var searchQuery = ""
         var loader: Bool = false
     }
@@ -28,9 +27,7 @@ struct SearchStore {
     enum Action {
         case searchQueryChanged(String)
         case searchQueryChangeDebounced
-        case searchResponse(Result<[any Identifiable], Error>)
-        case characters(IdentifiedActionOf<CharacterStore>)
-        case episodes(IdentifiedActionOf<CharacterStore>)
+        case searchResponse(Result<[SearchItem], Error>)
     }
     
     var body: some Reducer<State, Action> {
@@ -41,12 +38,7 @@ struct SearchStore {
                 return .none
             case let .searchResponse(.success(items)):
                 state.loader = false
-                
-                if state.type == .characters {
-                    let charactersStates = items.compactMap({$0 as? PaginatedCharacter}).map({CharacterStore.State(character: $0)})
-                    state.characters = .init(uniqueElements: charactersStates)
-                }
-                
+                state.results = items
                 return .none
                 
             case .searchQueryChangeDebounced:
@@ -63,43 +55,48 @@ struct SearchStore {
             case let .searchQueryChanged(query):
                 state.searchQuery = query
                 guard !state.searchQuery.isEmpty else {
-                    state.episodes = []
-                    state.characters = []
+                    state.results = []
                     state.loader = false
                     return .cancel(id: CancelID.cancel)
                 }
                 return .none
-            case .characters:
-                return .none
-            case .episodes:
-                return .none
             }
-        }
-        .forEach(\.characters, action: \.characters) {
-            CharacterStore(favorite: apiClient.favorite)
-        }
-        .forEach(\.episodes, action: \.episodes) {
-            CharacterStore(favorite: apiClient.favorite)
         }
     }
     
     enum SearchType {
         
-        case characters, episodes
+        case characters, episodes, location
         
-        func getResult(_ apiClient: APIClient, query: String) async -> Result<[any Identifiable], Error> {
+        func getResult(_ apiClient: APIClient, query: String) async -> Result<[SearchItem], Error> {
             
             switch self {
             case .characters:
                 return await Result {
-                    try await apiClient.searchCharacters(query: query)
+                   let result = try await apiClient.searchCharacters(query: query)
+                    return result.compactMap({.init(id: $0.id, title: $0.name, subtitle: $0.gender, image: $0.image, type: .characters)})
                 }
             case .episodes:
                 return await Result {
-                    try await apiClient.searchCharacters(query: query)
+                    let result = try await apiClient.searchEpisodes(query: query)
+                    return result.compactMap({.init(id: $0.id, title: $0.name, subtitle: $0.episode, type: .episodes)})
+                }
+            case .location:
+                return await Result {
+                    let result = try await apiClient.searchLocations(query: query)
+                    return result.compactMap({.init(id: $0.id, title: $0.name, subtitle: $0.dimension, type: .location)})
                 }
             }
         }
     }
 }
 
+struct SearchItem: Identifiable, Hashable {
+    
+    var id: String? = UUID().uuidString
+    var title: String?
+    var subtitle: String?
+    var image: String?
+    var type: SearchStore.SearchType
+    
+}

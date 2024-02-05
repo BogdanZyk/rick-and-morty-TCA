@@ -70,7 +70,7 @@ extension APIClient: TestDependencyKey {
             return CharacterAttrs.mock
         },
         searchCharacters: { _ in
-            return []
+            return [PaginatedCharacter.mock, .mock2]
         },
         favorite: {_, _ in
             return Bool.random()
