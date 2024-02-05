@@ -44,17 +44,26 @@ extension RootView {
         CharactersView(store: store.scope(state: \.tab.characters,
                                     action: \.tab.characters))
         .tag(TabStore.Tab.characters)
-        .tabItem { Text("Characters") }
+        .tabItem {
+            Image(systemName: "person")
+            Text("Characters")
+        }
         
         EpisodesView(rootStore: store,
                      store: store.scope(state: \.tab.episodes, action: \.tab.episodes))
         .tag(TabStore.Tab.episodes)
-        .tabItem { Text("Episodes") }
+        .tabItem {
+            Image(systemName: "film")
+            Text("Episodes")
+        }
         
         LocationsView(store: store.scope(state: \.tab.locations,
                                          action: \.tab.locations))
         .tag(TabStore.Tab.locations)
-        .tabItem { Text("Locations") }
+        .tabItem {
+            Image(systemName: "location.circle.fill")
+            Text("Locations")
+        }
     }
     
     
